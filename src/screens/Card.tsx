@@ -1,4 +1,5 @@
 import React from "react";
+import { Header } from "../components";
 import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
@@ -17,11 +18,7 @@ export const Card = ({ navigation }: any) => {
           marginHorizontal: 32,
         }}
       >
-        <View>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Feather name={"arrow-left"} size={26} color="#144BC8" />
-          </TouchableOpacity>
-        </View>
+        <Header.HeaderWithBackNavigation navigation={navigation} />
         <Image
           style={{
             width: 100,

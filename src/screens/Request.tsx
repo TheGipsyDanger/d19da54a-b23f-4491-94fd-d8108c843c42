@@ -1,4 +1,5 @@
 import React from "react";
+import { Header } from "../components";
 import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
 
 export const Request = () => {
@@ -9,52 +10,7 @@ export const Request = () => {
         backgroundColor: "white",
       }}
     >
-      <View
-        style={{
-          paddingTop: 32,
-          justifyContent: "center",
-          paddingHorizontal: 32,
-          backgroundColor: "#144BC8",
-          height: 200,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <View>
-            <Text style={{ color: "white", marginBottom: 8 }}>Estácio</Text>
-            <Text
-              style={{
-                color: "white",
-                fontSize: 18,
-                fontWeight: "bold",
-                marginBottom: 8,
-              }}
-            >
-              Direito
-            </Text>
-            <Text
-              style={{
-                color: "white",
-                fontSize: 18,
-                marginBottom: 8,
-              }}
-            >
-              2021 0910 1061
-            </Text>
-          </View>
-          <View>
-            <Image
-              style={{ width: 60, height: 60, borderRadius: 50 }}
-              source={require("../../assets/my.jpg")}
-            />
-          </View>
-        </View>
-      </View>
+      <Header.HeaderClean />
       <Text
         style={{
           paddingTop: 32,

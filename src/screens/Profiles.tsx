@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,10 +7,26 @@ import {
   FlatList,
   TouchableOpacity,
   Dimensions,
+  Alert,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { Header } from "../components";
 
 export const Profiles = ({ navigation }: any) => {
+  const [showAlert, setShowAlert] = useState(0);
+
+  useEffect(() => {
+    if (showAlert === 10) {
+      Alert.alert("Esse é nosso segredo", "Sorria e acene", [
+        {
+          text: "Fechar",
+          onPress: () => setShowAlert(0),
+          style: "cancel",
+        },
+      ]);
+    }
+  }, [showAlert]);
+
   return (
     <View
       style={{
@@ -17,83 +34,10 @@ export const Profiles = ({ navigation }: any) => {
         backgroundColor: "white",
       }}
     >
-      <View
-        style={{
-          paddingTop: 60,
-          paddingHorizontal: 32,
-          backgroundColor: "#144BC8",
-          flex: 1,
-        }}
-      >
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Image
-            style={{ width: 60, height: 60, borderRadius: 50 }}
-            source={require("../../assets/my.jpg")}
-          />
-          <Text
-            style={{
-              marginTop: 24,
-              color: "white",
-              fontSize: 18,
-              fontWeight: "bold",
-              marginBottom: 32,
-            }}
-          >
-            Renan Henrique Da Fonte Costa
-          </Text>
-          <Text
-            style={{
-              color: "white",
-              fontSize: 18,
-              marginBottom: 8,
-            }}
-          >
-            2021 0910 1061
-          </Text>
-          <Text
-            style={{
-              color: "white",
-              fontSize: 18,
-              marginBottom: 8,
-            }}
-          >
-            renan.henrique.fonte@gmail.com
-          </Text>
-          <Text
-            style={{
-              color: "white",
-              fontSize: 18,
-              marginBottom: 32,
-            }}
-          >
-            (21) 99223-1184
-          </Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Cards")}
-            style={{
-              height: 60,
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Feather name={"maximize-2"} size={22} color={"white"} />
-            <Text
-              style={{
-                marginLeft: 8,
-                color: "white",
-                fontSize: 18,
-              }}
-            >
-              Acessar carterinha
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header.HeaderCompose
+        navigation={navigation}
+        clickOne={() => setShowAlert(showAlert + 1)}
+      />
       <View style={{ flex: 1 }}>
         <Text
           style={{
