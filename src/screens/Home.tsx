@@ -28,7 +28,7 @@ export const Home = () => {
                   paddingHorizontal: 32,
                 }}
               >
-                Diciplinas
+                Disciplinas
               </Text>
               <FlatList
                 data={[

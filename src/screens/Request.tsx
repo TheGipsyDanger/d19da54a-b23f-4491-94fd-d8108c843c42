@@ -20,7 +20,7 @@ export const Request = () => {
           paddingHorizontal: 32,
         }}
       >
-        Diciplinas
+        Requisições
       </Text>
       <FlatList
         data={[
