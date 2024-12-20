@@ -2,8 +2,10 @@ import React from "react";
 import { Header } from "../components";
 import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useUserStore } from "../store/user";
 
 export const Card = ({ navigation }: any) => {
+  const { user } = useUserStore();
   return (
     <View
       style={{
@@ -27,7 +29,7 @@ export const Card = ({ navigation }: any) => {
             borderRadius: 50,
             alignSelf: "center",
           }}
-          source={require("../../assets/my.jpg")}
+          source={{ uri: user.avatar }}
         />
         <View>
           <Text
@@ -38,7 +40,9 @@ export const Card = ({ navigation }: any) => {
               textAlign: "center",
               fontSize: 16,
             }}
-          >{`Renan Henrique Da Fonte Costa`}</Text>
+          >
+            {user.name}
+          </Text>
         </View>
         <View
           style={{
@@ -62,7 +66,9 @@ export const Card = ({ navigation }: any) => {
                 fontWeight: "500",
                 fontSize: 16,
               }}
-            >{`151.205.297.39`}</Text>
+            >
+              {user.document}
+            </Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text
@@ -78,7 +84,9 @@ export const Card = ({ navigation }: any) => {
                 fontWeight: "500",
                 fontSize: 16,
               }}
-            >{`22 Mai 1994`}</Text>
+            >
+              {user.birth}
+            </Text>
           </View>
         </View>
         {/*  */}
@@ -103,7 +111,9 @@ export const Card = ({ navigation }: any) => {
                 fontWeight: "500",
                 fontSize: 16,
               }}
-            >{`2021 0910 1061`}</Text>
+            >
+              {user.registration}
+            </Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text
@@ -119,7 +129,9 @@ export const Card = ({ navigation }: any) => {
                 fontWeight: "500",
                 fontSize: 16,
               }}
-            >{`Dez 2026`}</Text>
+            >
+              {user.valid}
+            </Text>
           </View>
         </View>
         {/*  */}
@@ -143,7 +155,9 @@ export const Card = ({ navigation }: any) => {
                 fontWeight: "500",
                 fontSize: 16,
               }}
-            >{`Direito`}</Text>
+            >
+              {user.course}
+            </Text>
           </View>
         </View>
         <View
@@ -167,7 +181,9 @@ export const Card = ({ navigation }: any) => {
                 fontWeight: "500",
                 fontSize: 16,
               }}
-            >{`Estácio Barra da Tijuca - Tom Jobim`}</Text>
+            >
+              {user.camps}
+            </Text>
           </View>
         </View>
         {/*  */}

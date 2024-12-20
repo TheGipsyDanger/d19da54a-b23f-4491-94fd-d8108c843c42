@@ -7,22 +7,26 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
+import { useUserStore } from "../store/user";
 import { Feather } from "@expo/vector-icons";
 
-const HeaderClean = () => (
-  <View style={styles.ContainerClean}>
-    <View style={styles.ContentClean}>
-      <View>
-        <Text style={styles.University}>Estácio</Text>
-        <Text style={styles.Course}>Direito</Text>
-        <Text style={styles.Code}>2021 0910 1061</Text>
-      </View>
-      <View>
-        <Image style={styles.Avatar} source={require("../../assets/my.jpg")} />
+const HeaderClean = () => {
+  const { user } = useUserStore();
+  return (
+    <View style={styles.ContainerClean}>
+      <View style={styles.ContentClean}>
+        <View>
+          <Text style={styles.University}>Estácio</Text>
+          <Text style={styles.Course}>{user.course}</Text>
+          <Text style={styles.Code}>{user.registration}</Text>
+        </View>
+        <View>
+          <Image style={styles.Avatar} source={{ uri: user.avatar }} />
+        </View>
       </View>
     </View>
-  </View>
-);
+  );
+};
 
 const HeaderWithBackNavigation = ({ navigation }: any) => (
   <View>
@@ -32,35 +36,38 @@ const HeaderWithBackNavigation = ({ navigation }: any) => (
   </View>
 );
 
-export const HeaderCompose = ({ clickOne, navigation }: any) => (
-  <View style={styles.ContainerCompose}>
-    <View style={styles.ContentCompose}>
-      <View>
-        <TouchableWithoutFeedback onPress={clickOne}>
-          <Image
-            style={styles.AvatarComponse}
-            source={require("../../assets/my.jpg")}
-          />
-        </TouchableWithoutFeedback>
-        <Text style={styles.Name}>Renan Henrique Da Fonte Costa</Text>
-      </View>
-      <View style={styles.CenterInfos}>
-        <Text style={styles.Code}>2021 0910 1061</Text>
-        <Text style={styles.Email}>renan.henrique.fonte@gmail.com</Text>
-        <Text style={styles.Phone}>(21) 99223-1184</Text>
-      </View>
-      <View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Cards")}
-          style={styles.CardContainer}
-        >
-          <Feather name={"maximize-2"} size={22} color={"white"} />
-          <Text style={styles.Card}>Acessar carterinha</Text>
-        </TouchableOpacity>
+export const HeaderCompose = ({ clickOne, navigation }: any) => {
+  const { user } = useUserStore();
+  return (
+    <View style={styles.ContainerCompose}>
+      <View style={styles.ContentCompose}>
+        <View>
+          <TouchableWithoutFeedback onPress={clickOne}>
+            <Image
+              style={styles.AvatarComponse}
+              source={{ uri: user.avatar }}
+            />
+          </TouchableWithoutFeedback>
+          <Text style={styles.Name}>{user.name}</Text>
+        </View>
+        <View style={styles.CenterInfos}>
+          <Text style={styles.Code}>{user.registration}</Text>
+          <Text style={styles.Email}>{user.email}</Text>
+          <Text style={styles.Phone}>{user.phone}</Text>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Cards")}
+            style={styles.CardContainer}
+          >
+            <Feather name={"maximize-2"} size={22} color={"white"} />
+            <Text style={styles.Card}>Acessar carterinha</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
-  </View>
-);
+  );
+};
 
 export const Header = {
   HeaderClean,

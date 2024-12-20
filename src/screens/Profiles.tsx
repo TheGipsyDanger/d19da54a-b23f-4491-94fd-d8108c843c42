@@ -11,21 +11,34 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Header } from "../components";
+import { useUserStore } from "../store/user";
 
 export const Profiles = ({ navigation }: any) => {
+  const { users, setUserToUse } = useUserStore();
   const [showAlert, setShowAlert] = useState(0);
 
   useEffect(() => {
     if (showAlert === 10) {
-      Alert.alert("Esse é nosso segredo", "Sorria e acene", [
+      Alert.alert("Troque o usuário", "", [
         {
           text: "Fechar",
           onPress: () => setShowAlert(0),
           style: "cancel",
         },
+        ...users.map((user) => ({
+          text: user,
+          onPress: () => {
+            setUserToUse(user);
+            setShowAlert(0);
+          },
+        })),
       ]);
     }
   }, [showAlert]);
+
+  const press = () => {
+    setShowAlert(showAlert + 1);
+  };
 
   return (
     <View
@@ -34,10 +47,7 @@ export const Profiles = ({ navigation }: any) => {
         backgroundColor: "white",
       }}
     >
-      <Header.HeaderCompose
-        navigation={navigation}
-        clickOne={() => setShowAlert(showAlert + 1)}
-      />
+      <Header.HeaderCompose navigation={navigation} clickOne={press} />
       <View style={{ flex: 1 }}>
         <Text
           style={{

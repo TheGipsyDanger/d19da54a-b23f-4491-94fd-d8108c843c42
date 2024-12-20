@@ -2,13 +2,14 @@ import React from "react";
 import {
   View,
   Text,
-  Image,
   FlatList,
   Dimensions,
   TouchableOpacity,
 } from "react-native";
 import { Header } from "../components";
-import { Ionicons, Feather, MaterialIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { useEffect } from "react";
+import { useUserStore } from "../store/user";
 
 export const Home = () => {
   return (
@@ -80,6 +81,7 @@ export const Home = () => {
                       marginTop: 16,
                       marginBottom: 16,
                       height: 150,
+
                       padding: 16,
                       justifyContent: "space-between",
                     }}

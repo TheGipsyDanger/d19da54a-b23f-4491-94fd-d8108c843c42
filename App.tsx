@@ -1,10 +1,10 @@
 import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home, Financy, Profiles, Request, Card } from "./src/screens";
 import { Ionicons, Feather, MaterialIcons } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
+import { Initialize } from "./src/components";
 
 const Stack = createStackNavigator();
 
@@ -13,6 +13,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
+      <Initialize />
       <Tab.Navigator>
         <Tab.Screen
           name="inicio"
